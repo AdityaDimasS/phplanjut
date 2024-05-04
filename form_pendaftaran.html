@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pendaftaran</title>
+</head>
+<body>
+    <form action="proses_pendaftaran.php" method="post" onsubmit="saveFormData()">
+        <fieldset>
+            <div class="form-group">
+                <label for="nim">NIM:</label>
+                <input type="text" id="nim" name="nim">
+            </div>
+            <div class="form-group">
+                <label for="nama">Nama Lengkap:</label>
+                <input type="text" id="nama" name="nama">
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="tempat">Tempat Tanggal Lahir:</label>
+                <input type="text" id="tempat" name="tempat">
+                <input type="date" id="tanggal" name="tanggal" min="1989-01-01" max="2020-12-31" pattern="\d{2}-\d{2}-\d{4}">
+            </div>
+            <div class="form-group">
+                <label for="alamat">Alamat:</label>
+                <textarea id="alamat" name="alamat"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="jk">Gender:</label>
+                <input type="radio" id="laki-laki" name="jenis_kelamin" value="laki-laki">
+                <label class="inline-label" for="laki-laki">Laki-laki</label>
+                <div class="container">
+                    <input type="radio" id="perempuan" name="jenis_kelamin" value="perempuan">
+                    <label class="inline-label" for="perempuan">Perempuan</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit">Kirim</button>
+                <button type="button" onclick="resetForm()">Batal</button>
+            </div>
+        </fieldset>
+    </form>
+    <script>
+        function saveFormData() {
+            // Ambil nilai dari setiap input
+            var nim = document.getElementById('nim').value;
+            var nama = document.getElementById('nama').value;
+            var email = document.getElementById('email').value;
+            var tempat = document.getElementById('tempat').value;
+            var tanggal = document.getElementById('tanggal').value;
+            var alamat = document.getElementById('alamat').value;
+            var jenis_kelamin = document.querySelector('input[name="jenis_kelamin"]:checked').value;
+
+            // Simpan nilai input dalam cookies
+            document.cookie = "nim=" + nim;
+            document.cookie = "nama=" + nama;
+            document.cookie = "email=" + email;
+            document.cookie = "tempat=" + tempat;
+            document.cookie = "tanggal=" + tanggal;
+            document.cookie = "alamat=" + alamat;
+            document.cookie = "jenis_kelamin=" + jenis_kelamin;
+        }
+
+        function resetForm() {
+            document.querySelector('form').reset();
+            alert("Anda membatalkan pendaftaran.");
+        }
+    </script>
+</body>
+</html>
